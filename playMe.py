@@ -4,8 +4,10 @@ from discord.ext import commands, tasks
 import os
 from random import choice
 from keep_alive import keep_alive
+import requests
+import json
 
-client = commands.Bot(command_prefix='?')
+client = commands.Bot(command_prefix='.')
 
 status = ['listening music !', 'eating !', 'sleeping !', ' music for you !']
 
@@ -19,7 +21,7 @@ die = [
     'what wrong have I done to you ?', 'why do you want to kill me ?',
     '**sabotage** activated !!', '***omae wa mou shindeiru*** 😈',
     'I have such a small life, you want that too ?', '***DEAD***',
-    'you are accused of `Attempt To Murder`'
+    '**RIP** me', 'you are accused of `Attempt To Murder`'
 ]
 
 good_morning = [
@@ -49,6 +51,10 @@ good_night = [
     ' I know I will have sweet dreams tonight, my only nightmares are when U are away from me. Have a lovely night.',
     ' While the moon is shining in the sky, you are the brightest star of my night. Good Night.'
 ]
+
+# love_words = ['i love you', 'love', 'luv', 'lub', '❤']
+
+# love_reply = ['love you too ❤️', 'love you 2 ❤️', '❤️ you too...']
 
 
 @client.event
@@ -100,7 +106,36 @@ async def goodNight(ctx):
 async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
 
+#-----------------------------------------------------------
+def get_quote():
+    response = requests.get('https://zenquotes.io/api/random')
+    json_data = json.loads(response.text)
+    quote = json_data[0]['q'] + ' -' + json_data[0]['a']
+    return quote
+
+
+@client.command(name='quotes', help='this command will send some quotes')
+async def send_msg(ctx):
+    quote = get_quote()
+    await ctx.send(quote)
+#-----------------------------------------------------------
+
+@client.command(name='clear', help='this command will clear msgs')
+async def clear(ctx, amount = 5):
+    await ctx.channel.purge(limit=amount)
+
+
+
+# @client.command()
+# async def send_msg(ctx):
+#   msg = message.content
+#   if any(word in msg for word in love_words):
+#     await ctx.send(choice(love_reply))
+    
 
 keep_alive()
 
 client.run(os.getenv('TOKEN'))
+
+
+
