@@ -17,3 +17,6 @@
 <br>
 6- changes it's status every hour
 </br>
+<br>
+7- responds to special words within sentenses
+</br>
