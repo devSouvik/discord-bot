@@ -123,6 +123,18 @@ async def send_msg(ctx):
 @client.command(name='clear', help='this command will clear msgs')
 async def clear(ctx, amount = 5):
     await ctx.channel.purge(limit=amount)
+# ----------------------------------------------------
+
+
+@client.event
+async def on_message(message):
+    user = message.author
+    counter = 0
+    if 'fuck' in message.content or 'Fuck' in message.content or 'fucked' in message.content:
+        counter += 1
+        await message.channel.send(f"@{user} please dont bad mount anyone...use of f words if banned, **warning given**")
+        # await message.channel.send(counter)
+    await client.process_commands(message)
 
 
 
@@ -136,6 +148,5 @@ async def clear(ctx, amount = 5):
 keep_alive()
 
 client.run(os.getenv('TOKEN'))
-
 
 
