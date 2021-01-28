@@ -145,17 +145,8 @@ async def on_message(message):
     else:
         await client.process_commands(message)
 
-
-
-# @client.command()
-# async def send_msg(ctx):
-#   msg = message.content
-#   if any(word in msg for word in love_words):
-#     await ctx.send(choice(love_reply))
-    
+        
 
 keep_alive()
 
 client.run(os.getenv('TOKEN'))
-
-
