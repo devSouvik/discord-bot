@@ -135,6 +135,15 @@ async def on_message(message):
         await message.channel.send(f"@{user} please dont bad mount anyone...use of ***F*** words is banned, **warning given**")
         
     await client.process_commands(message)
+    
+    
+@client.event
+async def on_message(message):
+    if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.' in message.content  :
+        await message.delete()
+        await message.channel.send(" `I deleted the previous post because it was deleted from the subReddit` ")
+    else:
+        await client.process_commands(message)
 
 
 
