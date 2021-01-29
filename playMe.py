@@ -145,7 +145,15 @@ async def on_message(message):
     else:
         await client.process_commands(message)
 
-        
+
+@client.command(name='dp',help='fetch dp of user')
+async def dp(ctx, *, member: discord.Member=None): 
+    if not member: 
+        member = ctx.message.author 
+    userAvatar = member.avatar_url
+    await ctx.send(userAvatar)
+
+
 
 keep_alive()
 
