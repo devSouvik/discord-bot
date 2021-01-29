@@ -20,4 +20,9 @@
 <br>
 7- responds to special words within sentenses
 </br>
+<br>
 8- deletes message from chat with specific words or sentenses  
+</br>
+<br>
+9- fetch avatar of specific user
+</br>
