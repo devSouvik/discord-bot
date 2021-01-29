@@ -25,31 +25,31 @@ die = [
 ]
 
 good_morning = [
-    'Good morning to you. May every step you make be filled with happiness, love, and peace.',
-    'May this morning offer you new hope for life! May you be happy and enjoy every moment of it. Good morning!',
-    'Good morning! May your day be filled with positive things and full of blessings. Believe in yourself.',
-    'Good Morning my love! I hope my good morning text will bring a smile on your face at the very beginning of the day. I love you so much.',
-    'Every morning is a new blessing, a second chance that life gives you because you’re so worth it. Have a great day ahead. Good morning!',
-    'Get up early in the morning and don’t forget to say thank you to God for giving you another day! Good morning!',
-    'Good morning, my friend! Life gives us new opportunities every day, so hoping today will be full of good luck and prosperity for you!',
-    'Good Morning, dear! May everything you dreamed about last night comes true!',
-    'Good morning. I hope you have a wonderful day.',
-    'Life never gives you a second chance. So, enjoy every bit of it. Why not start with this beautiful morning. Good morning!',
-    'Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!'
+    '**Good morning to you. May every step you make be filled with happiness, love, and peace.**',
+    '**May this morning offer you new hope for life! May you be happy and enjoy every moment of it. Good morning!**',
+    '**Good morning! May your day be filled with positive things and full of blessings. Believe in yourself.**',
+    '**Good Morning my love! I hope my good morning text will bring a smile on your face at the very beginning of the day. I love you so much.**',
+    '**Every morning is a new blessing, a second chance that life gives you because you’re so worth it. Have a great day ahead. Good morning!**',
+    '**Get up early in the morning and don’t forget to say thank you to God for giving you another day! Good morning!**',
+    '**Good morning, my friend! Life gives us new opportunities every day, so hoping today will be full of good luck and prosperity for you!**',
+    '**Good Morning, dear! May everything you dreamed about last night comes true!**',
+    '**Good morning. I hope you have a wonderful day.**',
+    '**Life never gives you a second chance. So, enjoy every bit of it. Why not start with this beautiful morning. Good morning!**',
+    '**Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!**'
 ]
 
 good_night = [
-    'good night, have sweet dreams',
-    'Hey there, just dropped by to say hello. Hope that you had a wonderful day! Good Night!',
-    'I couldn’t fall asleep unless I told you how much I miss you – love you and goodnight!',
-    'Today has been a non-stop, hectic, crazy day, and I wish I had gotten time to see you… so I’m thinking about U before I fall asleep. Goodnight, sleep tight!',
-    'We are together for a very long time now, and I just wanna let you know that I love you more than ever now. Good Night',
-    'I don’t know what I’d do without you. You mean everything to me. Good Night.',
-    'One day I wish my dream would come true, And I’d wake up next to you. Till then Good Night!',
-    'When I sleep, it is a call to you and when I dream it is a wait for U. Good Night.',
-    'Sleep tight and good night as I wish you the best of dreams with all of my might.',
-    ' I know I will have sweet dreams tonight, my only nightmares are when U are away from me. Have a lovely night.',
-    ' While the moon is shining in the sky, you are the brightest star of my night. Good Night.'
+    '**good night, have sweet dreams**',
+    '**Hey there, just dropped by to say hello. Hope that you had a wonderful day! Good Night!**',
+    '**I couldn’t fall asleep unless I told you how much I miss you – love you and goodnight!**',
+    '**Today has been a non-stop, hectic, crazy day, and I wish I had gotten time to see you… so I’m thinking about U before I fall asleep. Goodnight, sleep tight!**',
+    '**We are together for a very long time now, and I just wanna let you know that I love you more than ever now. Good Night**',
+    '**I don’t know what I’d do without you. You mean everything to me. Good Night.**',
+    '**One day I wish my dream would come true, And I’d wake up next to you. Till then Good Night!**',
+    '**When I sleep, it is a call to you and when I dream it is a wait for U. Good Night.**',
+    '**Sleep tight and good night as I wish you the best of dreams with all of my might.**',
+    ' **I know I will have sweet dreams tonight, my only nightmares are when U are away from me. Have a lovely night.**',
+    '**While the moon is shining in the sky, you are the brightest star of my night. Good Night.**'
 ]
 
 # love_words = ['i love you', 'love', 'luv', 'lub', '❤']
@@ -106,6 +106,7 @@ async def goodNight(ctx):
 async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
 
+
 #-----------------------------------------------------------
 def get_quote():
     response = requests.get('https://zenquotes.io/api/random')
@@ -120,23 +121,29 @@ async def send_msg(ctx):
     await ctx.send(quote)
 #-----------------------------------------------------------
 
+
 @client.command(name='clear', help='this command will clear msgs')
-async def clear(ctx, amount = 5):
+@commands.has_role('admin')
+async def clear(ctx, amount=10):
     await ctx.channel.purge(limit=amount)
+
+
 # ----------------------------------------------------
 
 
 @client.event
 async def on_message(message):
     user = message.author
-    
+
     if 'fuck' in message.content or 'Fuck' in message.content or 'fucked' in message.content:
-        
-        await message.channel.send(f"@{user} please dont bad mount anyone...use of ***F*** words is banned, **warning given**")
-        
+
+        await message.channel.send(
+            f'**@{user}** please, dont bad mouth anyone...use of ***F*** words is strictly banned, **warning given**'
+        )
+
     await client.process_commands(message)
-    
-    
+
+
 @client.event
 async def on_message(message):
     if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.' in message.content  :
@@ -145,6 +152,11 @@ async def on_message(message):
     else:
         await client.process_commands(message)
 
+# @client.command()
+# async def send_msg(ctx):
+#   msg = message.content
+#   if any(word in msg for word in love_words):
+#     await ctx.send(choice(love_reply))
 
 @client.command(name='dp',help='fetch dp of user')
 async def dp(ctx, *, member: discord.Member=None): 
@@ -153,6 +165,37 @@ async def dp(ctx, *, member: discord.Member=None):
     userAvatar = member.avatar_url
     await ctx.send(userAvatar)
 
+
+@client.command(name='slap', help='slaps someone [only admins]')
+@commands.has_role('admin')
+async def slap(ctx, members: commands.Greedy[discord.Member], *, reason='no reason'):
+    slapped = ", ".join(x.name for x in members)
+    await ctx.send('**{}** just got slapped for {}'.format(slapped, reason))
+    await members.send('you were slapperd') #will send personal msgs
+
+
+#The below code bans user.
+@client.command(name='ban',help='will ban a member [only for admins]')
+@commands.has_role("admin")
+@commands.has_permissions(ban_members = True)
+async def ban(ctx, member : discord.Member, *, reason = None):
+    await member.ban(reason = reason)
+
+#The below code unbans user.
+@client.command(name='unban',help="unban's a banned member [only for admins]")
+@commands.has_role("admin")
+@commands.has_permissions(administrator = True)
+async def unban(ctx, *, member):
+    banned_users = await ctx.guild.bans()
+    member_name, member_discriminator = member.split("#")
+
+    for ban_entry in banned_users:
+        user = ban_entry.user
+
+        if (user.name, user.discriminator) == (member_name, member_discriminator):
+            await ctx.guild.unban(user)
+            await ctx.send(f'Unbanned {user.mention}')
+            return
 
 
 keep_alive()
