@@ -29,3 +29,6 @@
 <br>
 10- Ban and Unban user
 </br>
+<br>
+11- Locks and unlock channels
+</br>
