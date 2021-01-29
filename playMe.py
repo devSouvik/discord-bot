@@ -180,8 +180,10 @@ async def slap(ctx, members: commands.Greedy[discord.Member], *, reason='no reas
 @commands.has_permissions(ban_members = True)
 async def ban(ctx, member : discord.Member, *, reason = None):
     await member.ban(reason = reason)
+    await ctx.send(f'Banned {member.mention} for {reason}')
 
-#The below code unbans user.
+
+#The below code unbans user. command-> usernameSameAsGivenByUser#code
 @client.command(name='unban',help="unban's a banned member [only for admins]")
 @commands.has_role("admin")
 @commands.has_permissions(administrator = True)
@@ -196,6 +198,23 @@ async def unban(ctx, *, member):
             await ctx.guild.unban(user)
             await ctx.send(f'Unbanned {user.mention}')
             return
+
+        
+@client.command(name='lock',help = 'locks a channel' )
+@commands.has_role("admin")
+@commands.has_permissions(manage_channels = True)
+async def lockdown(ctx):
+    await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
+    await ctx.send( ctx.channel.mention + " ***is now in lockdown 🔒***")
+
+    
+@client.command(name='unlock',help = 'unlocks a channel')
+@commands.has_role("admin")
+@commands.has_permissions(manage_channels=True)
+async def unlock(ctx):
+    await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
+    await ctx.send(ctx.channel.mention + " ***has been unlocked 🔓***")
+
 
 
 keep_alive()
