@@ -26,3 +26,6 @@
 <br>
 9- fetch avatar of specific user
 </br>
+<br>
+10- Ban and Unban user
+</br>
