@@ -12,13 +12,13 @@
 4- wave you hello
 </br>
 <br>
-5- reacts when you cammand it to die
+5- reacts to specifc commads  
 </br>
 <br>
 6- changes it's status every hour
 </br>
 <br>
-7- responds to special words within sentenses
+7- responds if it detects special words within sentenses
 </br>
 <br>
 8- deletes message from chat with specific words or sentenses  
