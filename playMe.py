@@ -9,7 +9,9 @@ import json
 
 client = commands.Bot(command_prefix='.')
 
-status = ['listening music !', 'eating !', 'sleeping !', ' music for you !']
+status = ['spotify ! ', 'commands!', 'music for you !', 
+          'my fire mix', 'youtube videos', 'cards', 'with fire', 'with others', 'a Game', 'tricks'
+          'it my way !', 'anything but music', '.help']
 
 waves = [
     '***waving you back 👋***', 'why did you wake me up ? 🥱',
@@ -67,7 +69,7 @@ async def on_ready():
 async def on_member_join(member):
     channel = discord.utils.get(member.guild.channels, name='welcome')
     await channel.send(
-        f'Welcome {member.mention}!  Ready to jam out? See `?help` command for details!'
+        f'Welcome {member.mention}!  Ready to jam out? See `.help` command for details!'
     )
 
 
@@ -83,26 +85,26 @@ async def waving(ctx):
     await ctx.send(choice(waves))
 
 
-@client.command(name='die', help='this command will kill you or someone !')
+@client.command(name='die', help='the command to kill')
 async def dead(ctx):
     await ctx.send(choice(die))
 
 
 @client.command(
-    name='goodMorning',
-    help='this command will greet you with good morning wishes!')
-async def goodMorning(ctx):
+    name='gm',
+    help='this command will greet you with good morningwishes!')
+async def gm(ctx):
     await ctx.send(choice(good_morning))
 
 
 @client.command(
-    name='goodNight',
+    name='gn',
     help='this command will greet you with good night wishes!')
-async def goodNight(ctx):
+async def gn(ctx):
     await ctx.send(choice(good_night))
 
 
-@tasks.loop(hours=1)
+@tasks.loop(minutes=30)
 async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
 
@@ -122,8 +124,8 @@ async def send_msg(ctx):
 #-----------------------------------------------------------
 
 
-@client.command(name='clear', help='this command will clear msgs')
-@commands.has_role('admin')
+@client.command(name='clear', help='this command will clear msgs [only for mods]')
+@commands.has_role('mod')
 async def clear(ctx, amount=10):
     await ctx.channel.purge(limit=amount)
 
@@ -144,13 +146,15 @@ async def on_message(message):
     await client.process_commands(message)
 
 
+
 @client.event
 async def on_message(message):
-    if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.' in message.content  :
+    if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.'  in  message.content:
         await message.delete()
-        await message.channel.send(" `I deleted the previous post because it was deleted from the subReddit` ")
+        await message.channel.send(" `I deleted this post because it was deleted from the subReddit` ")
     else:
         await client.process_commands(message)
+
 
 # @client.command()
 # async def send_msg(ctx):
@@ -166,12 +170,12 @@ async def dp(ctx, *, member: discord.Member=None):
     await ctx.send(userAvatar)
 
 
-@client.command(name='slap', help='slaps someone [only admins]')
-@commands.has_role('admin')
+@client.command(name='slap', help='slaps someone [only mods]')
+@commands.has_role('mod')
 async def slap(ctx, members: commands.Greedy[discord.Member], *, reason='no reason'):
     slapped = ", ".join(x.name for x in members)
     await ctx.send('**{}** just got slapped for {}'.format(slapped, reason))
-    await members.send('you were slapperd') #will send personal msgs
+    await members.send('you were slapperd') #send personal msgs
 
 
 #The below code bans user.
@@ -183,7 +187,7 @@ async def ban(ctx, member : discord.Member, *, reason = None):
     await ctx.send(f'Banned {member.mention} for {reason}')
 
 
-#The below code unbans user. command-> usernameSameAsGivenByUser#code
+#The below code unbans user.
 @client.command(name='unban',help="unban's a banned member [only for admins]")
 @commands.has_role("admin")
 @commands.has_permissions(administrator = True)
@@ -199,22 +203,20 @@ async def unban(ctx, *, member):
             await ctx.send(f'Unbanned {user.mention}')
             return
 
-        
-@client.command(name='lock',help = 'locks a channel' )
-@commands.has_role("admin")
+
+@client.command(name='lock',help = 'locks a channel [only mods]' )
+@commands.has_role("mod")
 @commands.has_permissions(manage_channels = True)
 async def lockdown(ctx):
     await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
     await ctx.send( ctx.channel.mention + " ***is now in lockdown 🔒***")
 
-    
-@client.command(name='unlock',help = 'unlocks a channel')
-@commands.has_role("admin")
+@client.command(name='unlock',help = 'unlocks a channel [only mods]')
+@commands.has_role("mod")
 @commands.has_permissions(manage_channels=True)
 async def unlock(ctx):
     await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
     await ctx.send(ctx.channel.mention + " ***has been unlocked 🔓***")
-
 
 
 keep_alive()
