@@ -122,7 +122,33 @@ async def send_msg(ctx):
     quote = get_quote()
     await ctx.send(quote)
 #-----------------------------------------------------------
+#weather 
 
+
+@client.command(name='weather', help='this command will send weather report')
+async def send_weather(ctx, *, city):
+    response = requests.get(
+        'https://api.openweathermap.org/data/2.5/weather?q={}&appid=bc3f1439402bf0089ab54926b9e2ad71&units=metric'.format(
+            city)
+    )
+    json_data = json.loads(response.text)
+
+    location = json_data['name']
+    temp = json_data['main']['temp']
+    wind_speed = json_data['wind']['speed']
+    feels_like = json_data['main']['feels_like']
+    max_temp = json_data['main']['temp_max']
+    min_temp = json_data['main']['temp_min']
+    cloudiness = json_data['clouds']['all']
+    description = json_data['weather'][0]['description']
+    weather = ('```Location: {}\nTemperature : {}° C \nWind Speed : {} m/s\nMax Temp: {}° C\nMin Temp:{}° C\nFeels like: {}° C'
+               '\nCloudiness: {}%\nWeather Description: {}```'
+               .format(location, temp, wind_speed, max_temp, min_temp, feels_like,cloudiness, description))
+
+    await ctx.send(weather)
+
+
+# _______________________________________________
 
 @client.command(name='clear', help='this command will clear msgs [only for mods]')
 @commands.has_role('mod')
