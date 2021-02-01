@@ -1,18 +1,19 @@
 import asyncio
 import discord
+from discord import Member
 from discord.ext import commands, tasks
-import os
 from random import choice
-from keep_alive import keep_alive
 import requests
 import json
+import os
+from keep_alive import keep_alive
 
 client = commands.Bot(command_prefix='.')
 
-status = ['spotify ! ', 'commands!', 'music for you !', 
-          'my fire mix', 'youtube videos', 'cards', 'with fire', 'with others', 'a Game', 'tricks'
-          'it my way !', 'anything but music', '.help']
-
+status = ['spotify ! ', 'commands!', 'music for you !',
+          'my fire mix', 'youtube videos', 'cards', 'with fire', 'with others', 'a game', 'tricks', 'UNO', 'it my way !',
+          'anything but music', '.help', 'with other bots'] 
+          
 waves = [
     '***waving you back 👋***', 'why did you wake me up ? 🥱',
     'pls, let me sleep 💤', '💤 am sleeping, do not disturb',
@@ -53,6 +54,7 @@ good_night = [
     ' **I know I will have sweet dreams tonight, my only nightmares are when U are away from me. Have a lovely night.**',
     '**While the moon is shining in the sky, you are the brightest star of my night. Good Night.**'
 ]
+
 
 # love_words = ['i love you', 'love', 'luv', 'lub', '❤']
 
@@ -109,7 +111,7 @@ async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
 
 
-#-----------------------------------------------------------
+# -----------------------------------------------------------
 def get_quote():
     response = requests.get('https://zenquotes.io/api/random')
     json_data = json.loads(response.text)
@@ -121,8 +123,18 @@ def get_quote():
 async def send_msg(ctx):
     quote = get_quote()
     await ctx.send(quote)
-#-----------------------------------------------------------
-#weather 
+
+
+# -----------------------------------------------------------
+
+
+@client.command(name='clear', help='this command will clear msgs')
+# @commands.has_role('mod')
+async def clear(ctx, amount=10):
+    await ctx.channel.purge(limit=amount)
+
+
+# ----------------------------------------------------
 
 
 @client.command(name='weather', help='this command will send weather report')
@@ -141,41 +153,45 @@ async def send_weather(ctx, *, city):
     min_temp = json_data['main']['temp_min']
     cloudiness = json_data['clouds']['all']
     description = json_data['weather'][0]['description']
-    weather = ('```Location: {}\nTemperature : {}° C \nWind Speed : {} m/s\nMax Temp: {}° C\nMin Temp:{}° C\nFeels like: {}° C'
-               '\nCloudiness: {}%\nWeather Description: {}```'
-               .format(location, temp, wind_speed, max_temp, min_temp, feels_like,cloudiness, description))
+    weather = (
+        '```Location: {}\nTemperature : {}° C \nWind Speed : {} m/s\nMax Temp: {}° C\nMin Temp: {}° C\nFeels like: {}° C'
+        '\nCloudiness: {}%\nWeather Description: {}```'
+            .format(location, temp, wind_speed, max_temp, min_temp, feels_like, cloudiness, description))
 
     await ctx.send(weather)
 
 
-# _______________________________________________
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandInvokeError):
+        await ctx.send("`sorry, I don't have info about this`")
+    elif isinstance(error, commands.MissingPermissions):
+        await ctx.send("`sorry, you don't have permission for this command`")
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("`sorry, you are missing some arguments`")
+    elif isinstance(error, commands.CommandNotFound):
+        await ctx.send("`sorry, no such command found`")
+    else:
+        raise error
 
-@client.command(name='clear', help='this command will clear msgs [only for mods]')
-@commands.has_role('mod')
-async def clear(ctx, amount=10):
-    await ctx.channel.purge(limit=amount)
 
-
-# ----------------------------------------------------
-
+# -------------------------------------------------------------------
 
 @client.event
 async def on_message(message):
     user = message.author
 
     if 'fuck' in message.content or 'Fuck' in message.content or 'fucked' in message.content:
-
         await message.channel.send(
-            f'**@{user}** please, dont bad mouth anyone...use of ***F*** words is strictly banned, **warning given**'
+            f'**{user}** please, dont bad mouth anyone...use of ***F*** words is strictly banned, **warning given**'
         )
 
     await client.process_commands(message)
 
 
-
 @client.event
 async def on_message(message):
-    if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.'  in  message.content:
+    if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.' in message.content:
         await message.delete()
         await message.channel.send(" `I deleted this post because it was deleted from the subReddit` ")
     else:
@@ -188,10 +204,10 @@ async def on_message(message):
 #   if any(word in msg for word in love_words):
 #     await ctx.send(choice(love_reply))
 
-@client.command(name='dp',help='fetch dp of user')
-async def dp(ctx, *, member: discord.Member=None): 
-    if not member: 
-        member = ctx.message.author 
+@client.command(name='dp', help='fetch dp of user')
+async def dp(ctx, *, member: discord.Member = None):
+    if not member:
+        member = ctx.message.author
     userAvatar = member.avatar_url
     await ctx.send(userAvatar)
 
@@ -201,22 +217,25 @@ async def dp(ctx, *, member: discord.Member=None):
 async def slap(ctx, members: commands.Greedy[discord.Member], *, reason='no reason'):
     slapped = ", ".join(x.name for x in members)
     await ctx.send('**{}** just got slapped for {}'.format(slapped, reason))
-    await members.send('you were slapperd') #send personal msgs
+    try:
+        await members.send('you were slapped for {}'.format(reason))  # send personal msgs
+    except AttributeError:
+        print('some error occurred')
 
 
-#The below code bans user.
-@client.command(name='ban',help='will ban a member [only for admins]')
+# The below code bans user.
+@client.command(name='ban', help='will ban a member [only for admins]')
 @commands.has_role("admin")
-@commands.has_permissions(ban_members = True)
-async def ban(ctx, member : discord.Member, *, reason = None):
-    await member.ban(reason = reason)
+@commands.has_permissions(ban_members=True)
+async def ban(ctx, member: discord.Member, *, reason=None):
+    await member.ban(reason=reason)
     await ctx.send(f'Banned {member.mention} for {reason}')
 
 
-#The below code unbans user.
-@client.command(name='unban',help="unban's a banned member [only for admins]")
+# The below code unbans user.
+@client.command(name='unban', help="unban's a banned member [only for admins]")
 @commands.has_role("admin")
-@commands.has_permissions(administrator = True)
+@commands.has_permissions(administrator=True)
 async def unban(ctx, *, member):
     banned_users = await ctx.guild.bans()
     member_name, member_discriminator = member.split("#")
@@ -230,19 +249,37 @@ async def unban(ctx, *, member):
             return
 
 
-@client.command(name='lock',help = 'locks a channel [only mods]' )
+@client.command(name='lock', help='locks a channel [only mods]')
 @commands.has_role("mod")
-@commands.has_permissions(manage_channels = True)
+@commands.has_permissions(manage_channels=True)
 async def lockdown(ctx):
     await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
-    await ctx.send( ctx.channel.mention + " ***is now in lockdown 🔒***")
+    await ctx.send(ctx.channel.mention + " ***is now in lockdown 🔒***")
 
-@client.command(name='unlock',help = 'unlocks a channel [only mods]')
+
+@client.command(name='unlock', help='unlocks a channel [only mods]')
 @commands.has_role("mod")
 @commands.has_permissions(manage_channels=True)
 async def unlock(ctx):
     await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
     await ctx.send(ctx.channel.mention + " ***has been unlocked 🔓***")
+
+
+@commands.guild_only()
+@client.command(name='position', help='returns server position')
+async def position(ctx, *, member: Member = None):
+    member = member or ctx.author
+    if member.joined_at is None:
+        await ctx.send("Could not locate your join date.")
+        return
+    pos = sum(m.joined_at < member.joined_at for m in ctx.guild.members if m.joined_at is not None)
+    await ctx.send(f"You are member #{pos}")
+
+
+@client.command(name='joind', help='date of joining discord')
+async def userinfo(ctx, member: discord.Member):
+    created_at = member.created_at.strftime("Date of joining Discord: %b %d, %Y")
+    await ctx.send(created_at)
 
 
 keep_alive()
