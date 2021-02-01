@@ -32,3 +32,6 @@
 <br>
 11- Locks and unlock channels
 </br>
+<br>
+12- fetches weather report of a given city
+</br>
