@@ -140,7 +140,7 @@ async def clear(ctx, amount=10):
 @client.command(name='weather', help='this command will send weather report')
 async def send_weather(ctx, *, city):
     response = requests.get(
-        'https://api.openweathermap.org/data/2.5/weather?q={}&appid=bc3f1439402bf0089ab54926b9e2ad71&units=metric'.format(
+        'https://api.openweathermap.org/data/2.5/weather?q={}&appid={entreYourApikey}&units=metric'.format(
             city)
     )
     json_data = json.loads(response.text)
