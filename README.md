@@ -35,3 +35,9 @@
 <br>
 12- fetches weather report of a given city
 </br>
+<br>
+13- URL shorten-er    
+</br>
+<br>
+14- Funny Love calculator 
+</br>
