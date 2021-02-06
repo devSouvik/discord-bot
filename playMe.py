@@ -7,6 +7,8 @@ import requests
 import json
 import os
 from keep_alive import keep_alive
+import pyshorteners
+
 
 client = commands.Bot(command_prefix='.')
 
@@ -84,12 +86,19 @@ async def ping(ctx):
 
 @client.command(name='hello', help='this command will wave you back !')
 async def waving(ctx):
-    await ctx.send(choice(waves))
+  await ctx.send(choice(waves))
+
+
+@client.command(name='short', help='shortens long urls !')
+async def shorten(ctx, link):
+  s = pyshorteners.Shortener()
+  x = s.tinyurl.short(link)
+  await ctx.send(x)
 
 
 @client.command(name='die', help='the command to kill')
 async def dead(ctx):
-    await ctx.send(choice(die))
+  await ctx.send(choice(die))
 
 
 @client.command(
@@ -140,7 +149,7 @@ async def clear(ctx, amount=10):
 @client.command(name='weather', help='this command will send weather report')
 async def send_weather(ctx, *, city):
     response = requests.get(
-        'https://api.openweathermap.org/data/2.5/weather?q={}&appid={entreYourApikey}&units=metric'.format(
+        'https://api.openweathermap.org/data/2.5/weather?q={}&appid=bc3f1439402bf0089ab54926b9e2ad71&units=metric'.format(
             city)
     )
     json_data = json.loads(response.text)
@@ -159,6 +168,11 @@ async def send_weather(ctx, *, city):
             .format(location, temp, wind_speed, max_temp, min_temp, feels_like, cloudiness, description))
 
     await ctx.send(weather)
+    # msg.add_reaction(':fire:')
+
+
+# -------------------------------------------------------------
+# error-handlers
 
 
 @client.event
@@ -177,13 +191,34 @@ async def on_command_error(ctx, error):
 
 # -------------------------------------------------------------------
 
+@client.command(name='lovecalculator', help='calculate your love luck')
+async def love_calculator(ctx, male, female):
+
+  url = "https://love-calculator.p.rapidapi.com/getPercentage"
+  querystring = {"fname": {male}, "sname": {female}}
+
+  headers = {
+      'x-rapidapi-key': "8c9a184bdfmsh7ddc8d04557787ep1b8dddjsn003f75efff88",
+      'x-rapidapi-host': "love-calculator.p.rapidapi.com"
+  }
+
+  response = requests.request("GET", url, headers=headers, params=querystring)
+  data = json.loads(response.text)
+  percentage = data['percentage']
+  remarks = data['result']
+
+  result = ('Love percentage: ❤️ ** {}** % ❤️ \nremarks: {}').format(percentage, remarks)
+  await ctx.send(result)
+
+# --------------------------------------------------------------------------------
+
 @client.event
 async def on_message(message):
     user = message.author
 
     if 'fuck' in message.content or 'Fuck' in message.content or 'fucked' in message.content:
         await message.channel.send(
-            f'**{user}** please, dont bad mouth anyone...use of ***F*** words is strictly banned, **warning given**'
+            f"**{user}** please, don't bad mouth anyone...use of ***F*** words is strictly banned, **warning given**"
         )
 
     await client.process_commands(message)
@@ -193,7 +228,7 @@ async def on_message(message):
 async def on_message(message):
     if 'Hello! Your submission to /r/IllegalLifeProTips has been automatically removed for not complying with the following rule.' in message.content:
         await message.delete()
-        await message.channel.send(" `I deleted this post because it was deleted from the subReddit` ")
+        await message.channel.send(" ```I deleted this post because it was deleted from the subReddit``` ")
     else:
         await client.process_commands(message)
 
@@ -280,6 +315,14 @@ async def position(ctx, *, member: Member = None):
 async def userinfo(ctx, member: discord.Member):
     created_at = member.created_at.strftime("Date of joining Discord: %b %d, %Y")
     await ctx.send(created_at)
+
+
+# ________________________________________
+# @client.command(name='send',help='send dm')
+# async def send(ctx, message):
+#   await message.author.dm_channel.send(message)
+#     # await client.get_user(other_user_id).send("Content")
+
 
 
 keep_alive()
