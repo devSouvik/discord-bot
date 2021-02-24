@@ -41,3 +41,6 @@
 <br>
 14- Funny Love calculator 
 </br>
+<br>
+Invite this Bot in your server ==> <a href="https://discord.com/api/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot"> here</a>
+</br>
