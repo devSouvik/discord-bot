@@ -375,12 +375,22 @@ async def userinfo(ctx, member: discord.Member):
     await ctx.send(created_at)
 
 
-# ________________________________________
-# @client.command(name='send',help='send dm')
-# async def send(ctx, message):
-#   await message.author.dm_channel.send(message)
-#     # await client.get_user(other_user_id).send("Content")
+# -------------------------------------------------------------------
+# confession-box
 
+
+@client.command(name="confess", help="confess someone in #confession_box")
+async def confess(ctx, member: discord.Member, *, your_text):
+    if ctx.channel.id == 813056793014042664:
+
+        if your_text is None:
+            await ctx.send("What do you want to say?")
+            return
+        await member.send(your_text)
+        await ctx.message.delete()
+
+    else:
+        await ctx.send("This command is only accessible in <#813056793014042664> ")
 
 
 keep_alive()
