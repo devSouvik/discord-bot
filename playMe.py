@@ -225,6 +225,8 @@ async def on_command_error(ctx, error):
         await ctx.send("`sorry, you are missing some arguments`")
     elif isinstance(error, commands.CommandNotFound):
         await ctx.send("`sorry, no such command found`")
+    elif isinstance(error, commands.MemberNotFound):
+        await ctx.send("`sorry, no such user found or, you haven't mentioned the user`")
     else:
         raise error
 # -------------------------------------------------------------------
