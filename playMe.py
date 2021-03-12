@@ -29,19 +29,19 @@ die = [
     '**RIP** me', 'you are accused of `Attempt To Murder`'
 ]
 
-good_morning = [
-    '**Good morning to you. May every step you make be filled with happiness, love, and peace.**',
-    '**May this morning offer you new hope for life! May you be happy and enjoy every moment of it. Good morning!**',
-    '**Good morning! May your day be filled with positive things and full of blessings. Believe in yourself.**',
-    '**Good Morning my love! I hope my good morning text will bring a smile on your face at the very beginning of the day. I love you so much.**',
-    '**Every morning is a new blessing, a second chance that life gives you because you’re so worth it. Have a great day ahead. Good morning!**',
-    '**Get up early in the morning and don’t forget to say thank you to God for giving you another day! Good morning!**',
-    '**Good morning, my friend! Life gives us new opportunities every day, so hoping today will be full of good luck and prosperity for you!**',
-    '**Good Morning, dear! May everything you dreamed about last night comes true!**',
-    '**Good morning. I hope you have a wonderful day.**',
-    '**Life never gives you a second chance. So, enjoy every bit of it. Why not start with this beautiful morning. Good morning!**',
-    '**Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!**'
-]
+# good_morning = [
+#     '**Good morning to you. May every step you make be filled with happiness, love, and peace.**',
+#     '**May this morning offer you new hope for life! May you be happy and enjoy every moment of it. Good morning!**',
+#     '**Good morning! May your day be filled with positive things and full of blessings. Believe in yourself.**',
+#     '**Good Morning my love! I hope my good morning text will bring a smile on your face at the very beginning of the day. I love you so much.**',
+#     '**Every morning is a new blessing, a second chance that life gives you because you’re so worth it. Have a great day ahead. Good morning!**',
+#     '**Get up early in the morning and don’t forget to say thank you to God for giving you another day! Good morning!**',
+#     '**Good morning, my friend! Life gives us new opportunities every day, so hoping today will be full of good luck and prosperity for you!**',
+#     '**Good Morning, dear! May everything you dreamed about last night comes true!**',
+#     '**Good morning. I hope you have a wonderful day.**',
+#     '**Life never gives you a second chance. So, enjoy every bit of it. Why not start with this beautiful morning. Good morning!**',
+#     '**Life is full of uncertainties. But there will always be a sunrise after every sunset. Good morning!**'
+# ]
 
 good_night = [
     '**good night, have sweet dreams**',
@@ -101,11 +101,22 @@ async def dead(ctx):
   await ctx.send(choice(die))
 
 
-@client.command(
-    name='gm',
-    help='this command will greet you with good morningwishes!')
-async def gm(ctx):
-    await ctx.send(choice(good_morning))
+@client.command(name='gm', help='this command will greet you with good morning wishes!')
+async def generate_quote(ctx):
+    url = "https://ajith-messages.p.rapidapi.com/getMsgs"
+
+    querystring = {"category": "good morning"}
+
+    headers = {
+        'x-rapidapi-key': "8c9a184bdfmsh7ddc8d04557787ep1b8dddjsn003f75efff88",
+        'x-rapidapi-host': "ajith-messages.p.rapidapi.com"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    json_data = json.loads(response.text)
+    final_text = json_data["Message"]
+    await ctx.send(final_text)
 
 
 @client.command(
