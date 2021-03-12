@@ -198,12 +198,13 @@ async def send_weather(ctx, *, city):
     feels_like = json_data['main']['feels_like']
     max_temp = json_data['main']['temp_max']
     min_temp = json_data['main']['temp_min']
+    humidity = json_data['main']['humidity']
     cloudiness = json_data['clouds']['all']
     description = json_data['weather'][0]['description']
     weather = (
         '```Location: {}\nTemperature : {}° C \nWind Speed : {} m/s\nMax Temp: {}° C\nMin Temp: {}° C\nFeels like: {}° C'
-        '\nCloudiness: {}%\nWeather Description: {}```'
-            .format(location, temp, wind_speed, max_temp, min_temp, feels_like, cloudiness, description))
+        '\nCloudiness: {}%\nHumidity: {}\nWeather Description: {}```'
+            .format(location, temp, wind_speed, max_temp, min_temp, feels_like, cloudiness, humidity, description))
 
     await ctx.send(weather)
     # msg.add_reaction(':fire:')
