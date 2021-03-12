@@ -152,6 +152,7 @@ async def generate_quote(ctx, member: discord.Member):
 
     json_data = json.loads(response.text)
     bday_text = json_data["Message"]
+    await ctx.message.delete()
     await ctx.send(f'{bday_text} 🍫🎂🎉 {member.mention}')
 # -------------------------------------------------------------------
 # status
@@ -388,8 +389,9 @@ async def confess(ctx, member: discord.Member, *, your_text):
         if your_text is None:
             await ctx.send("What do you want to say?")
             return
-        await member.send(your_text)
         await ctx.message.delete()
+        await member.send(your_text)
+        await ctx.channel.send("**Someone confessed something! 😉**")
 
     else:
         await ctx.send("This command is only accessible in <#813056793014042664> ")
