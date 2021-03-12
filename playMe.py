@@ -100,6 +100,9 @@ async def shorten(ctx, link):
 async def dead(ctx):
   await ctx.send(choice(die))
 
+# -------------------------------------------------------------------
+#  good morning
+
 
 @client.command(name='gm', help='this command will greet you with good morning wishes!')
 async def generate_quote(ctx):
@@ -117,6 +120,8 @@ async def generate_quote(ctx):
     json_data = json.loads(response.text)
     final_text = json_data["Message"]
     await ctx.send(final_text)
+# -------------------------------------------------------------------
+#  good night
 
 
 @client.command(
@@ -124,14 +129,38 @@ async def generate_quote(ctx):
     help='this command will greet you with good night wishes!')
 async def gn(ctx):
     await ctx.send(choice(good_night))
+# -------------------------------------------------------------------
+# bday text
+
+
+@client.command(name='bday', help='this command will generate some quotes')
+async def generate_quote(ctx, member: discord.Member):
+    url = "https://ajith-messages.p.rapidapi.com/getMsgs"
+
+    querystring = {"category": "birthday"}
+
+    headers = {
+        'x-rapidapi-key': "8c9a184bdfmsh7ddc8d04557787ep1b8dddjsn003f75efff88",
+        'x-rapidapi-host': "ajith-messages.p.rapidapi.com"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    json_data = json.loads(response.text)
+    bday_text = json_data["Message"]
+    await ctx.send(f'{bday_text} 🍫🎂🎉 {member.mention}')
+
+
+# -------------------------------------------------------------------
 
 
 @tasks.loop(minutes=30)
 async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
-
-
 # -----------------------------------------------------------
+# quote generator
+
+
 def get_quote():
     response = requests.get('https://zenquotes.io/api/random')
     json_data = json.loads(response.text)
@@ -143,18 +172,16 @@ def get_quote():
 async def send_msg(ctx):
     quote = get_quote()
     await ctx.send(quote)
-
-
 # -----------------------------------------------------------
+# clear command
 
 
 @client.command(name='clear', help='this command will clear msgs')
 # @commands.has_role('mod')
 async def clear(ctx, amount=10):
     await ctx.channel.purge(limit=amount)
-
-
 # ----------------------------------------------------
+# weather report
 
 
 @client.command(name='weather', help='this command will send weather report')
@@ -180,8 +207,6 @@ async def send_weather(ctx, *, city):
 
     await ctx.send(weather)
     # msg.add_reaction(':fire:')
-
-
 # -------------------------------------------------------------
 # error-handlers
 
@@ -198,9 +223,9 @@ async def on_command_error(ctx, error):
         await ctx.send("`sorry, no such command found`")
     else:
         raise error
-
-
 # -------------------------------------------------------------------
+# love calculator
+
 
 @client.command(name='lovecalculator', help='calculate your love luck')
 async def love_calculator(ctx, male, female):
@@ -223,6 +248,7 @@ async def love_calculator(ctx, male, female):
 
 # --------------------------------------------------------------------------------
 
+
 @client.event
 async def on_message(message):
     user = message.author
@@ -242,13 +268,15 @@ async def on_message(message):
         await message.channel.send(" ```I deleted this post because it was deleted from the subReddit``` ")
     else:
         await client.process_commands(message)
-
-
+# -------------------------------------------------------------------
 # @client.command()
 # async def send_msg(ctx):
 #   msg = message.content
 #   if any(word in msg for word in love_words):
 #     await ctx.send(choice(love_reply))
+# -------------------------------------------------------------------
+# fetch dp
+
 
 @client.command(name='dp', help='fetch dp of user')
 async def dp(ctx, *, member: discord.Member = None):
@@ -256,6 +284,8 @@ async def dp(ctx, *, member: discord.Member = None):
         member = ctx.message.author
     userAvatar = member.avatar_url
     await ctx.send(userAvatar)
+# -------------------------------------------------------------------
+# slap command
 
 
 @client.command(name='slap', help='slaps someone [only mods]')
@@ -267,18 +297,20 @@ async def slap(ctx, members: commands.Greedy[discord.Member], *, reason='no reas
         await members.send('you were slapped for {}'.format(reason))  # send personal msgs
     except AttributeError:
         print('some error occurred')
-
-
+# -------------------------------------------------------------------
 # The below code bans user.
+
+
 @client.command(name='ban', help='will ban a member [only for admins]')
 @commands.has_role("admin")
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
     await ctx.send(f'Banned {member.mention} for {reason}')
-
-
+# -------------------------------------------------------------------
 # The below code unbans user.
+
+
 @client.command(name='unban', help="unban's a banned member [only for admins]")
 @commands.has_role("admin")
 @commands.has_permissions(administrator=True)
@@ -293,6 +325,8 @@ async def unban(ctx, *, member):
             await ctx.guild.unban(user)
             await ctx.send(f'Unbanned {user.mention}')
             return
+# -------------------------------------------------------------------
+# locks channel
 
 
 @client.command(name='lock', help='locks a channel [only mods]')
@@ -302,6 +336,9 @@ async def lockdown(ctx):
     await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=False)
     await ctx.send(ctx.channel.mention + " ***is now in lockdown 🔒***")
 
+# -------------------------------------------------------------------
+# unlocks channel
+
 
 @client.command(name='unlock', help='unlocks a channel [only mods]')
 @commands.has_role("mod")
@@ -309,6 +346,9 @@ async def lockdown(ctx):
 async def unlock(ctx):
     await ctx.channel.set_permissions(ctx.guild.default_role, send_messages=True)
     await ctx.send(ctx.channel.mention + " ***has been unlocked 🔓***")
+
+# -------------------------------------------------------------------
+# user's position in server 
 
 
 @commands.guild_only()
@@ -320,6 +360,9 @@ async def position(ctx, *, member: Member = None):
         return
     pos = sum(m.joined_at < member.joined_at for m in ctx.guild.members if m.joined_at is not None)
     await ctx.send(f"You are member #{pos}")
+
+# -------------------------------------------------------------------
+# date of joining disord
 
 
 @client.command(name='joind', help='date of joining discord')
