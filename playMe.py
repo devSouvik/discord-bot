@@ -88,18 +88,22 @@ async def ping(ctx):
 async def waving(ctx):
   await ctx.send(choice(waves))
 
+# ------------------------------------------------------------------
+# url shortner
+
 
 @client.command(name='short', help='shortens long urls !')
 async def shorten(ctx, link):
   s = pyshorteners.Shortener()
   x = s.tinyurl.short(link)
   await ctx.send(x)
+# ------------------------------------------------------------------
+# die
 
 
 @client.command(name='die', help='the command to kill')
 async def dead(ctx):
   await ctx.send(choice(die))
-
 # -------------------------------------------------------------------
 #  good morning
 
@@ -149,16 +153,15 @@ async def generate_quote(ctx, member: discord.Member):
     json_data = json.loads(response.text)
     bday_text = json_data["Message"]
     await ctx.send(f'{bday_text} 🍫🎂🎉 {member.mention}')
-
-
 # -------------------------------------------------------------------
+# status
 
 
 @tasks.loop(minutes=30)
 async def change_status():
     await client.change_presence(activity=discord.Game(choice(status)))
 # -----------------------------------------------------------
-# quote generator
+# motivational quote generator
 
 
 def get_quote():
