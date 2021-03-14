@@ -27,10 +27,10 @@
 9- fetch avatar of specific user
 </br>
 <br>
-10- Ban and Unban user
+10- Ban and Unban user (AdMiN)
 </br>
 <br>
-11- Locks and unlock channels
+11- Locks and unlock channels (AdMiN)
 </br>
 <br>
 12- fetches weather report of a given city
@@ -47,5 +47,12 @@
 <br>
 # Click 👉🏽<a href="https://discord.com/api/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot" target="_blank"> here</a> 👈🏽 to invite this bot in your server
 </br>
-
-
+<br>
+  
+</br>
+<br>
+Make sure to have a role named -> AdMiN (this role will have few admin level privileges from the Bot)
+</br>
+<br>
+and also make sure to have a text-channel named 'confession-box' 
+</br>
