@@ -1,61 +1,71 @@
-# discord-bot
-
-**Bot Prefix** ==> ' . '
-<br>
-1- fetch random good morning & good night quotes 
-</br>
-<br>
-2- clear chats in bulk
-</br>
-<br>
-3- fetch random famous quotes
-</br>
-<br>
-4- wave you hello
-</br>
-<br>
-5- reacts to specifc commads  
-</br>
-<br>
-6- changes it's status every hour
-</br>
-<br>
-7- responds if it detects special words within sentenses
-</br>
-<br>
-8- deletes message from chat with specific words or sentenses  
-</br>
-<br>
-9- fetch avatar of specific user
-</br>
-<br>
-10- Ban and Unban user (AdMiN)
-</br>
-<br>
-11- Locks and unlock channels (AdMiN)
-</br>
-<br>
-12- fetches weather report of a given city
-</br>
-<br>
-13- URL shorten-er    
-</br>
-<br>
-14- Funny Love calculator 
-</br>
-<br>
-15- confession-box to send DM annonymously to someone  
-</br>
-<br>
-### Click 👉🏽 [here](https://discord.com/api/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) 👈🏽 to invite this bot in your server
-</br>
-<br>
-
->  Make sure to have a role named -->> **AdMiN** (this role will have
-> few admin level privileges from the Bot)
-
-<br></br>
-> Have a text-channel named  -->> **confession-box**
-
-</br>
-
+<ul>
+<li><strong>Python Discord Bot</strong></li>
+</ul>
+<p><strong>Bot Prefix&nbsp;==&gt; ' . '</strong></p>
+<hr />
+<ul>
+<li>fetch random good morning &amp; good night quotes</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>clear chats in bulk</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>fetch random famous quotes</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>wave you hello</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>reacts to specific commands</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>changes its status</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>responds if it detects special words within sentences</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>deletes the message from <a href="https://geekprank.com/chat-screenshot/" rel="nofollow">chat with</a> specific words or sentences</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>fetch avatar of a specific user</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Ban and Unban user (AdMiN)</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Locks and unlock channels (AdMiN)</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>fetches weather report of a given city</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>URL shorten-er</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>Funny Love calculator</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li>confession-box to send DM anonymously to someone</li>
+</ul>
+<hr />
+<p>&nbsp;</p>
+<p>Click <a title="Discord server invite" href="https://discord.com/oauth2/authorize?client_id=803117467609071667&amp;permissions=8&amp;scope=bot" target="_blank" rel="noopener">here</a> to invite the bot to your server.</p>
+<p>Make sure to have a role named --&gt;&gt; <strong>AdMiN</strong> (this role will have few admin-level privileges from the Bot)</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Have a text-channel named --&gt;&gt;&nbsp;<strong>confession-box</strong></p>
