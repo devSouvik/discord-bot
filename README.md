@@ -1,6 +1,5 @@
-<ul>
-<li><strong>Python Discord Bot</strong></li>
-</ul>
+# Python Discord Bot
+
 <p><strong>Bot Prefix&nbsp;==&gt; ' . '</strong></p>
 <hr />
 <ul>
@@ -32,7 +31,7 @@
 </ul>
 <p>&nbsp;</p>
 <ul>
-<li>deletes the message from <a href="https://geekprank.com/chat-screenshot/" rel="nofollow">chat with</a> specific words or sentences</li>
+<li>deletes the message from specific words or sentences</li>
 </ul>
 <p>&nbsp;</p>
 <ul>
