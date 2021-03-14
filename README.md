@@ -1,6 +1,6 @@
 # discord-bot
 
-**Bot Prefix** => '.' 
+**Bot Prefix** ==> ' . '
 <br>
 1- fetch random good morning & good night quotes 
 </br>
@@ -47,14 +47,13 @@
 15- confession-box to send DM annonymously to someone  
 </br>
 <br>
-# Click 👉🏽<a href="https://discord.com/api/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot" target="_blank"> here</a> 👈🏽 to invite this bot in your server
+### Click 👉🏽 [here](https://discord.com/api/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) 👈🏽 to invite this bot in your server
 </br>
 <br>
   
+ 
+  - Make sure to have a role named -->> **AdMiN** (this role will have few admin level privileges from the Bot)
+ 
+ - Have a text-channel named  -->> **confession-box**
 </br>
-<br>
-- Make sure to have a role named -> AdMiN (this role will have few admin level privileges from the Bot)
-</br>
-<br>
-- Have a text-channel named 'confession-box' 
-</br>
+
