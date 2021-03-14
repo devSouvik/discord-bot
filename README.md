@@ -64,7 +64,7 @@
 <hr />
 <p>&nbsp;</p>
 
-## Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&amp;permissions=8&amp;scope=bot) to invite the bot to your server.
+### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&amp;permissions=8&amp;scope=bot) to invite the bot to your server.
 
 <p>Make sure to have a role named --&gt;&gt; <strong>AdMiN</strong> (this role will have few admin-level privileges from the Bot)</p>
 <p>&nbsp;</p>
