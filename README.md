@@ -53,8 +53,8 @@
   
 </br>
 <br>
-Make sure to have a role named -> AdMiN (this role will have few admin level privileges from the Bot)
+- Make sure to have a role named -> AdMiN (this role will have few admin level privileges from the Bot)
 </br>
 <br>
-and also have a text-channel named 'confession-box' 
+- Have a text-channel named 'confession-box' 
 </br>
