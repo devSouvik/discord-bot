@@ -1,6 +1,6 @@
 # discord-bot
 
-## Bot Prefix- '.' 
+**Bot Prefix** => '.' 
 <br>
 1- fetch random good morning & good night quotes 
 </br>
