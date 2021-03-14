@@ -50,10 +50,12 @@
 ### Click 👉🏽 [here](https://discord.com/api/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) 👈🏽 to invite this bot in your server
 </br>
 <br>
-  
- 
-  - Make sure to have a role named -->> **AdMiN** (this role will have few admin level privileges from the Bot)
- 
- - Have a text-channel named  -->> **confession-box**
+
+>  Make sure to have a role named -->> **AdMiN** (this role will have
+> few admin level privileges from the Bot)
+
+<br></br>
+> Have a text-channel named  -->> **confession-box**
+
 </br>
 
