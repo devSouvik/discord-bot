@@ -59,7 +59,7 @@ example: .lock
 
 #### To contribute 
 
-> 1. Create an issue if not present 
-> 2. Fork this repository 
-> 3. Make necessary changes
-> 4. send a pull request for the issue
+> 1. **Create an issue if not present** 
+> 2. **Fork this repository** 
+> 3. **Make necessary changes**
+> 4. **send a pull request for the issue**
