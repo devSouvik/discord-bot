@@ -53,8 +53,15 @@ example: .lock
 
 - Make sure to have a role named =>> **AdMiN** (this role will have few admin-level privileges from the Bot)
 
- 
+![Screenshot from 2021-03-16 11-33-04](https://user-images.githubusercontent.com/54489090/111263177-6e87e100-864b-11eb-900a-4e4af0320662.png)
+
+
 - Have a text-channel named =>> **confession-box**
+
+
+![Screenshot from 2021-03-16 11-30-46](https://user-images.githubusercontent.com/54489090/111263046-37193480-864b-11eb-9713-36878cbc6880.png)
+
+ 
 
 
 #### To contribute 
