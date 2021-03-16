@@ -1,13 +1,10 @@
-# Python Discord Bot 
-![discord_logo](https://user-images.githubusercontent.com/54489090/111264817-3504a500-864e-11eb-8236-91f79e4a8faf.png =30x)
-
-
+# Python Discord Bot  ![discord_logo](https://user-images.githubusercontent.com/54489090/111264817-3504a500-864e-11eb-8236-91f79e4a8faf.png =30x)
 
 **Bot Prefix** => **.** (Dot)
-
+<br>
 example: .lock
-
-- [X] fetch random good morning & good night quotes
+</br>
+- [x] fetch random good morning & good night quotes
  
 
 - [X] clear chats in bulk
@@ -52,7 +49,7 @@ example: .lock
 - [X] confession-box to send DM anonymously to someone
  
 
-#### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot to your server.
+### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot to your server.
 
 - Make sure to have a role named =>> **AdMiN** (this role will have few admin-level privileges from the Bot)
 
