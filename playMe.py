@@ -382,10 +382,12 @@ async def userinfo(ctx, member: discord.Member):
 # confession-box
 
 
-@client.command(name="confess", help="confess someone in #confession_box")
+@client.command(name="confess", help="confess someone in confession_box")
+# @commands.has_permissions(manage_messages=True)
 async def confess(ctx, member: discord.Member, *, your_text):
-    if ctx.channel.id == 813056793014042664:
-
+    active_channel = ['confession-box']
+    # if ctx.channel.id == 813056793014042664:
+    if str(ctx.message.channel) in active_channel:
         if your_text is None:
             await ctx.send("What do you want to say?")
             return
@@ -393,8 +395,9 @@ async def confess(ctx, member: discord.Member, *, your_text):
         await member.send(your_text)
         await ctx.channel.send("**Someone confessed something! 😉**")
 
+
     else:
-        await ctx.send("This command is only accessible in <#813056793014042664> ")
+        await ctx.send(f"Sorry, this command is only accessible in **{active_channel}**")
 
 
 keep_alive()
