@@ -1,5 +1,4 @@
-# Python Discord Bot ![BOT (1)](https://user-images.githubusercontent.com/54489090/111266423-87df5c00-8650-11eb-9f3c-be3a8f545745.png)
-
+# Python Discord Bot <img src="https://user-images.githubusercontent.com/54489090/111266423-87df5c00-8650-11eb-9f3c-be3a8f545745.png" width="110" height="50"/>
 
 **Bot Prefix** => **.** (Dot)
 <br>
