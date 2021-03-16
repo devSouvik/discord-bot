@@ -1,5 +1,7 @@
-# Python Discord Bot <img src="https://user-images.githubusercontent.com/54489090/111267354-d5a89400-8651-11eb-9104-b86631e923e4.png" width="180" height="50"/>
-<!-- https://user-images.githubusercontent.com/54489090/111266423-87df5c00-8650-11eb-9f3c-be3a8f545745.png -->
+# Python Discord Bot <img src="https://user-images.githubusercontent.com/54489090/111269020-0f7a9a00-8654-11eb-9e85-51356aac4555.png" width="180" />
+<!-- https://user-images.githubusercontent.com/54489090/111266423-87df5c00-8650-11eb-9f3c-be3a8f545745.png
+https://user-images.githubusercontent.com/54489090/111267354-d5a89400-8651-11eb-9104-b86631e923e4.png  -->
+
 
 **Bot Prefix** => **.** (Dot)
 <br>
