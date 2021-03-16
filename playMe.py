@@ -386,7 +386,7 @@ async def userinfo(ctx, member: discord.Member):
 # @commands.has_permissions(manage_messages=True)
 async def confess(ctx, member: discord.Member, *, your_text):
     active_channel = ['confession-box']
-    # if ctx.channel.id == 813056793014042664:
+    # if ctx.channel.id == 'channel_id':
     if str(ctx.message.channel) in active_channel:
         if your_text is None:
             await ctx.send("What do you want to say?")
