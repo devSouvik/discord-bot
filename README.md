@@ -72,8 +72,10 @@ example: .lock
 
 ![Screenshot from 2021-03-16 11-30-46](https://user-images.githubusercontent.com/54489090/111263046-37193480-864b-11eb-9713-36878cbc6880.png)
 
+ <br>
+ </br>
  
-
+> **This Bot is hosted @repl.it** 
 
 #### To contribute 
 
