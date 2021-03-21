@@ -398,6 +398,23 @@ async def confess(ctx, member: discord.Member, *, your_text):
 
     else:
         await ctx.send(f"Sorry, this command is only accessible in **{active_channel}**")
+# -------------------------------------------------------------------
+#random-password
+
+
+@client.command(name="password", help="generate random password")
+async def password(ctx, length):
+
+    response = requests.get(
+        f"https://randompasswordgeneratorapi.herokuapp.com/password-generate/{length}")
+
+    json_data = json.loads(response.text)
+    my_password = json_data["password"]
+
+    await ctx.message.author.send(f"Your new {length} digit password is: **{my_password}** \n _Don't share your password with anyone_")
+    await ctx.message.delete()
+# -------------------------------------------------------------------
+
 
 
 keep_alive()
