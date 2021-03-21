@@ -58,6 +58,9 @@ example: .lock
  
 
 - [X] confession-box to send DM anonymously to someone
+
+
+- [X] DM you your new unique password 
  
 
 ### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot to your server.
