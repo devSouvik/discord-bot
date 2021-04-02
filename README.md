@@ -80,7 +80,7 @@ example: .lock
  
 > **This Bot is hosted @repl.it** 
 
-#### To contribute 
+### To contribute 
 
 > 1. **Create an issue if not present** 
 > 2. **Fork this repository** 
