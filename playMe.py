@@ -304,14 +304,27 @@ async def slap(ctx, members: commands.Greedy[discord.Member], *, reason='no reas
         await members.send('you were slapped for {}'.format(reason))  # send personal msgs
     except AttributeError:
         print('some error occurred')
+          
+          
+# -------------------------------------------------------------
+# The below code warns user.
+@client.command(name='warn', help='will warn a member [only for admins]')
+@commands.has_role("admin")
+@commands.has_permissions(kick_members=True)
+async def warn(ctx, member: discord.Member, *, reason=None):
+    await member.send(f"Hello, we are from **{ctx.message.guild.name}** , You are being warned for {reason}")
+    await ctx.send(f'Warned {member.mention} for {reason}')
+
+          
 # ----------------------------------------------------------------------------------------------
 # The below code kicks user.
 @client.command(name='kick', help='will kick a member [only for admins]')
 @commands.has_role("admin")
-@commands.has_permissions(ban_members=True)
+@commands.has_permissions(kick_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
     await ctx.send(f'kicked {member.mention} for {reason}')
+
 
 
 # -------------------------------------------------------------------
