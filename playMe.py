@@ -400,6 +400,17 @@ async def userinfo(ctx, member: discord.Member):
     created_at = member.created_at.strftime("Date of joining Discord: %b %d, %Y")
     await ctx.send(created_at)
 
+          
+# --------------------------------------------------------------
+# reveals joining date of user on the server
+
+
+@client.command(name='serverjoind', help='reveals date of joining server')
+async def serverjoind(ctx, member: discord.Member):
+    server_joined_on = member.joined_at.strftime("%b %d, %Y")
+
+    await ctx.send(f"{member.mention} joined this server on **{server_joined_on}**")
+
 
 # -------------------------------------------------------------------
 # confession-box
