@@ -63,7 +63,7 @@ example: .lock
 - [X] DM you your new unique password 
  
 
-### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot to your server.
+### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot.
 
 - Make sure to have a role named =>> **AdMiN** (this role will have few admin-level privileges from the Bot)
 
