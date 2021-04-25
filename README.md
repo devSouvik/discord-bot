@@ -1,4 +1,4 @@
-# Python Discord Bot <img src="https://user-images.githubusercontent.com/54489090/111270152-82384500-8655-11eb-8404-aa6644095a88.png" width="180" />
+# Python Discord Bot  <img src="https://user-images.githubusercontent.com/54489090/111270152-82384500-8655-11eb-8404-aa6644095a88.png" width="180" />
 
 
 <!-- 
@@ -12,9 +12,9 @@ https://user-images.githubusercontent.com/54489090/111269644-e4dd1100-8654-11eb-
 
 
 **Bot Prefix** => **.** (Dot)
-<br>
-example: .lock
-</br>
+
+## Features
+
 - [x] fetch random good morning & good night quotes
  
 
@@ -63,8 +63,9 @@ example: .lock
 - [X] DM you your new unique password 
  
 
-### Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot.
+ *<br> example: .lock </br>*
 
+## Requirements
 - Make sure to have a role named =>> **AdMiN** (this role will have few admin-level privileges from the Bot)
 
 ![Screenshot from 2021-03-16 11-33-04](https://user-images.githubusercontent.com/54489090/111263177-6e87e100-864b-11eb-900a-4e4af0320662.png)
@@ -78,9 +79,8 @@ example: .lock
  <br>
  </br>
  
-> **This Bot is hosted @repl.it** 
 
-### To contribute 
+## To contribute 
 
 > 1. **Create an issue if not present** 
 > 2. **Fork this repository** 
@@ -93,3 +93,10 @@ example: .lock
  </br>
  
 > **This Bot is hosted @repl.it** 
+
+  <br>
+ </br>
+
+ 
+
+## ***Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot.***
