@@ -99,4 +99,4 @@ https://user-images.githubusercontent.com/54489090/111269644-e4dd1100-8654-11eb-
 
  
 
-## ***Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot.***
+<!-- ## ***Click [here](https://discord.com/oauth2/authorize?client_id=803117467609071667&permissions=8&scope=bot) to invite the bot.*** -->
